@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import core.model.Model;
+import core.Model;
 
-public class UserModel extends Model{
+public class UserModel extends Model {
 	
 	private Integer id;
 	private String name, email, phone_number, password;

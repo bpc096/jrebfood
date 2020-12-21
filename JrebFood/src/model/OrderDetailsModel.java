@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import core.model.Model;
+import core.Model;
 
-public class OrderDetailsModel extends Model{
+public class OrderDetailsModel extends Model {
 	
 	private Integer id, user_id, food_id, order_id, food_quantity;
 	

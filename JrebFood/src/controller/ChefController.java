@@ -2,10 +2,10 @@ package controller;
 
 import java.util.Vector;
 
-import core.controller.Controller;
-import core.model.Model;
+import core.Controller;
+import core.Model;
 
-public class ChefController extends Controller{
+public class ChefController extends Controller {
 
 	public ChefController() {
 		// TODO Auto-generated constructor stub

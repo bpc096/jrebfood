@@ -2,11 +2,11 @@ package controller;
 
 import java.util.Vector;
 
-import core.controller.Controller;
-import core.model.Model;
+import core.Controller;
+import core.Model;
 import model.UserModel;
 
-public class UserController extends Controller{
+public class UserController extends Controller {
 
 	private UserModel user;
 	private static UserController controller;

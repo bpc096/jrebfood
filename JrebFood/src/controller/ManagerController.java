@@ -2,10 +2,10 @@ package controller;
 
 import java.util.Vector;
 
-import core.controller.Controller;
-import core.model.Model;
+import core.Controller;
+import core.Model;
 
-public class ManagerController extends Controller{
+public class ManagerController extends Controller {
 
 	public ManagerController() {
 		// TODO Auto-generated constructor stub

@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import core.model.Model;
+import core.Model;
 
-public class DriverModel extends Model{
+public class DriverModel extends Model {
 
 	private Integer id, driver_id;
 	private String driver_email;

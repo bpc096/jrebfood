@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import core.model.Model;
+import core.Model;
 
-public class ManagerModel extends Model{
+public class ManagerModel extends Model {
 
 	private Integer id, manager_id;
 	private String emp_email;

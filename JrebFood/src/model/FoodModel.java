@@ -5,9 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import core.model.Model;
+import core.Model;
 
-public class FoodModel extends Model{
+public class FoodModel extends Model {
 	
 	private Integer food_id, food_price, food_stock;
 	private String food_name, food_description;
