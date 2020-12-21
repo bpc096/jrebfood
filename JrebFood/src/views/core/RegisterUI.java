@@ -10,19 +10,26 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import javax.swing.JTable;
 
-public class RegisterUI extends JFrame{
+public class RegisterUI extends JFrame implements ActionListener{
 	private JLabel lblPassword, lblPhone, lblName, lblEmail, lblRole, header, lblSplash;
 	private JButton btnLogin, btnRegister;
 	private JTextField textFieldName, textFieldEmail, textFieldPhone, textFieldPassword;
 	private JRadioButton rdbtnCustomer, rdbtnDriver, rdbtnChef;
 	private ButtonGroup rdbuttonGroup;
+	private JTable table;
+//	DefaultTableModel dtm;
+	Vector<Object> tableContent;
 
 	public RegisterUI() {
+		//loadUser();
 		initialize();
 	}
 	
@@ -91,6 +98,8 @@ public class RegisterUI extends JFrame{
 		
 		// register button
 		btnRegister = new JButton();
+		//insert new user
+		btnRegister.addActionListener(this);
 		btnRegist();
 		btnRegister.setIcon(new ImageIcon("res/registBtn.png"));
 		btnRegister.setBorderPainted(false); 
@@ -158,7 +167,28 @@ public class RegisterUI extends JFrame{
 		rdbuttonGroup.add(rdbtnDriver);
 		rdbuttonGroup.add(rdbtnChef);
 		rdbuttonGroup.add(rdbtnCustomer);
+		
 	}
+	
+//	private void loadUser() {
+//		String header[] = {"ID", "NAME", "EMAIL", "PHONE NUMBER", "PASSWORD", "FOOD QUANTITY"};
+//		DefaultTableModel dtm = new DefaultTableModel(header, 0);
+//		
+//		con.rs = con.executeQuery("SELECT * FROM user");
+//		
+//		try {
+//			while(con.rs.next() == true) {
+//				tableContent = new Vector<Object>();
+//				for (int i = 1; i <= con.rsm.getColumnCount(); i++) {
+//					tableContent.add(con.rs.getObject(i));
+//				}
+//			 	dtm.addRow(tableContent); 
+//			}
+//			table.setModel(dtm);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
 	private void btnRegist() {
 		btnRegister.addActionListener(new ActionListener() {
@@ -188,5 +218,14 @@ public class RegisterUI extends JFrame{
 		setVisible(true);
 		setIconImage(new ImageIcon("res/jrebfood_logo.png").getImage());
 		setTitle("JrebFood");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == btnRegister) {
+//			con.insertUser(textFieldName.getText(), textFieldEmail.getText(), textFieldPhone.getText(), textFieldPassword.getText());
+			System.out.println("Clicked!");
+		}
+		
 	}
 }

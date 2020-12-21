@@ -12,14 +12,11 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import views.core.ChefMenuUI;
 import views.core.CustomerMenuUI;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class CustomerCheckout extends JFrame {
 	private JButton btnOk;

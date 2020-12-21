@@ -14,8 +14,6 @@ import javax.swing.SwingConstants;
 
 import views.core.DriverMenuUI;
 
-import javax.swing.JComboBox;
-
 public class DriverDeliverOrder extends JFrame{
 	private JLabel lblHeader, lblStats, lblOrderStatus;
 	private JButton deliverBtn, backBtn;

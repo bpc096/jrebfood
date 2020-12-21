@@ -15,8 +15,6 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import views.core.ManagerMenuUI;
-
 public class ManagerFinancialSummary extends JFrame {
 	private JLabel lblHeader, lblIncome;
 	private JScrollPane scroll;

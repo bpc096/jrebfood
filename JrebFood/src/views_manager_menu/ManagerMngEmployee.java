@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import connect.Connect;
 import views.core.ManagerMenuUI;
 
 import javax.swing.JButton;
@@ -26,6 +27,8 @@ public class ManagerMngEmployee extends JFrame {
 	private JScrollPane scroll;
 	private JButton btnBack, btnFire, btnHire;
 	private JList listEmployee;
+	
+	Connect con = new Connect();
 	
 	public ManagerMngEmployee() {
 		initialize();

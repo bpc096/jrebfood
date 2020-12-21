@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import connect.Connect;
 import views_manager_menu.ManagerFinancialSummary;
 import views_manager_menu.ManagerMngEmployee;
 

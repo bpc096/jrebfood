@@ -4,24 +4,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.AbstractListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import views.core.ChefMenuUI;
 import views.core.CustomerMenuUI;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
-public class CustomerOrder extends JFrame {
+public class CustomerOrder extends JFrame implements ActionListener{
 	private JButton btnActive, btnHistory, backBtn;
 	private JLabel lblHeader;
 
@@ -109,5 +103,11 @@ public class CustomerOrder extends JFrame {
 		setVisible(true);
 		setIconImage(new ImageIcon("res/jrebfood_logo.png").getImage());
 		setTitle("JrebFood");
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
