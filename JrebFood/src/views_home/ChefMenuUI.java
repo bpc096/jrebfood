@@ -1,14 +1,13 @@
-package views.core;
+package views_home;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import view.core.View;
 import views_chef_menu.ChefFoodStatus;
 import views_chef_menu.ChefManageMenu;
 import views_chef_menu.ChefOrders;
@@ -18,18 +17,21 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ChefMenuUI extends JFrame{
-	JButton btnOrders, btnMngMenu, btnViewMenu, btnFoodStat;
+public class ChefMenuUI extends View{
+	JButton btnOrders, btnMngMenu, btnViewMenu, btnFoodStat, btnLogout;
 	JLabel lblHeader;
 
 	public ChefMenuUI() {
-		initialize();
+		super();
+		this.width = 460;
+		this.height = 470;
+		this.x = 750;
+		this.y = 360;
 	}
-
-	private void initialize() {
-		config();
-		
-		// lblHeader label
+	
+	@Override
+	public void initialize() {
+		/// lblHeader label
 		lblHeader = new JLabel("CHEF MENU");
 		lblHeader.setForeground(new Color(50, 205, 50).darker());
 		lblHeader.setHorizontalAlignment(SwingConstants.CENTER);
@@ -80,12 +82,32 @@ public class ChefMenuUI extends JFrame{
 		btnOrders.setFocusPainted(false); 
 		btnOrders.setOpaque(false);
 		getContentPane().add(btnOrders);
+		
+		// logout btn
+		btnLogout = new JButton();
+		logOutBtn();
+		btnLogout.setIcon(new ImageIcon("res/logoutBtn.png"));
+		btnLogout.setBounds(175, 375, 85, 40);
+		btnLogout.setBorderPainted(false); 
+		btnLogout.setContentAreaFilled(false); 
+		btnLogout.setFocusPainted(false); 
+		btnLogout.setOpaque(false);
+		getContentPane().add(btnLogout);
+	}
+	
+	private void logOutBtn() {
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new LoginUI().config();
+				setVisible(false);
+			}
+		});
 	}
 	
 	private void ordersBtn() {
 		btnOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefOrders().setVisible(true);
+				new ChefOrders().mConfig();
 			}
 		});
 	}
@@ -93,7 +115,7 @@ public class ChefMenuUI extends JFrame{
 	private void foodStatBtn() {
 		btnFoodStat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefFoodStatus().setVisible(true);
+				new ChefFoodStatus().mConfig();
 			}
 		});
 	}
@@ -101,7 +123,7 @@ public class ChefMenuUI extends JFrame{
 	private void mngMenuBtn() {
 		btnMngMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefManageMenu().setVisible(true);
+				new ChefManageMenu().mConfig();
 			}
 		});
 	}
@@ -109,20 +131,8 @@ public class ChefMenuUI extends JFrame{
 	private void viewMenuBtn() {
 		btnViewMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ChefViewMenu().setVisible(true);
+				new ChefViewMenu().mConfig();
 			}
 		});
-	}
-
-	private void config() {
-		setLocation(750, 360);
-		setResizable(false);
-		setSize(new Dimension(460, 430));
-		getContentPane().setBackground(Color.WHITE);
-		getContentPane().setLayout(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setVisible(true);
-		setIconImage(new ImageIcon("res/jrebfood_logo.png").getImage());
-		setTitle("JrebFood");
 	}
 }
