@@ -5,10 +5,8 @@ import views.core.LoginUI;
 
 public class Main {
 	
-	Connect con;
-	
 	public Main() {
-	con.getConnection();
+		Connect.getConnection();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
