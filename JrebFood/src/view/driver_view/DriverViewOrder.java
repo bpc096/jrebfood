@@ -75,7 +75,7 @@ public class DriverViewOrder extends View {
 	private void orderBtn() {
 		btnOrderList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new DriverOrderList().mConfig();
+				new DriverOrderList().config();
 			}
 		});
 	}
@@ -83,7 +83,7 @@ public class DriverViewOrder extends View {
 	private void historyBtn() {
 		btnHistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new DriverOrderHistory().mConfig();
+				new DriverOrderHistory().config();
 			}
 		});
 	}

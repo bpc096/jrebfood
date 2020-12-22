@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import controller.UserController;
 import core.View;
 
 import javax.swing.JTextField;
@@ -96,17 +97,24 @@ public class LoginUI extends View {
 	private void loginBtn() {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (txtFieldEmail.getText().equals("manager")) {
+				boolean accFound;
+				if (txtFieldEmail.getText().equals("debug manager")) {
 					new ManagerMenuUI().config();
 					setVisible(false);
-				} else if (txtFieldEmail.getText().equals("chef")) {
+				} else if (txtFieldEmail.getText().equals("debug chef")) {
 					new ChefMenuUI().config();
 					setVisible(false);
-				} else if (txtFieldEmail.getText().equals("customer")) {
+				} else if (txtFieldEmail.getText().equals("debug customer")) {
 					new CustomerMenuUI().config();
 					setVisible(false);
-				} else if (txtFieldEmail.getText().equals("driver")) {
+				} else if (txtFieldEmail.getText().equals("debug driver")) {
 					new DriverMenuUI().config();
+					setVisible(false);
+				}
+				
+				accFound = UserController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
+				if (accFound) {
+					new CustomerMenuUI().config();
 					setVisible(false);
 				}
 			}

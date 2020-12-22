@@ -81,7 +81,7 @@ public class ManagerModel extends Model {
 			e.printStackTrace();
 		}
 		
-		return null;
+		return data;
 	}
 
 	public Integer getId() {

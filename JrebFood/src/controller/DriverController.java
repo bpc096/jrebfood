@@ -7,6 +7,16 @@ import core.Model;
 
 public class DriverController extends Controller {
 
+	private static String ID;
+	
+	public static String getID() {
+		return ID;
+	}
+
+	public static void setID(String iD) {
+		ID = iD;
+	}
+
 	public DriverController() {
 		// TODO Auto-generated constructor stub
 	}

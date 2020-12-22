@@ -73,7 +73,7 @@ public class CustomerOrder extends View implements ActionListener {
 	private void activeBtn() {
 		btnActive.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CustomerOrderActive().mConfig();
+				new CustomerOrderActive().config();
 			}
 		});
 	}
@@ -81,7 +81,7 @@ public class CustomerOrder extends View implements ActionListener {
 	private void historyBtn() {
 		btnHistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new CustomerOrderHistory().mConfig();
+				new CustomerOrderHistory().config();
 			}
 		});
 	}

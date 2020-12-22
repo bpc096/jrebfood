@@ -83,7 +83,7 @@ public class ManagerMenuUI extends View {
 	private void finSumBtn() {
 		btnFinSum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ManagerFinancialSummary().mConfig();
+				new ManagerFinancialSummary().config();
 			}
 		});
 	}

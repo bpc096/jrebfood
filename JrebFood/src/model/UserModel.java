@@ -13,7 +13,7 @@ public class UserModel extends Model {
 	private String name, email, phone_number, password;
 	
 	public UserModel() {
-		this.tableName = "user";
+		this.tableName = "User";
 	}
 
 	@Override
@@ -91,6 +91,33 @@ public class UserModel extends Model {
 			e.printStackTrace();
 		}
 		
+		return data;
+	}
+	
+	public UserModel findAcc(String findEmail, String findPassword) {
+		UserModel u;
+		String query = String.format("SELECT * FROM %s WHERE Email = '%s' AND Password = '%s'", tableName, findEmail, findPassword);
+		ResultSet rs = con.executeQuery(query);
+		try {
+			while (rs.next()) {
+				Integer id = rs.getInt("UserID");
+				String name = rs.getString("Name");
+				String email = rs.getString("Email");
+				String password = rs.getString("Password");
+				String phone_number = rs.getString("PhoneNum");
+					
+				u = new UserModel();
+				u.setId(id);
+				u.setName(name);
+				u.setEmail(email);
+				u.setPhone_number(phone_number);
+				u.setPassword(password);
+				return u;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 

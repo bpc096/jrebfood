@@ -8,11 +8,13 @@ import model.UserModel;
 
 public class UserController extends Controller {
 
-	private UserModel user;
-	private static UserController controller;
+	private static UserModel user;
+
+	public static UserController controller;
+	
 	
 	public UserController() {
-		user = new UserModel();
+		
 	}
 	
 	public static UserController getInstance() {
@@ -51,6 +53,15 @@ public class UserController extends Controller {
 		u.setId(id);
 		
 		u.delete();
+	}
+	
+	public boolean findAcc(String email, String password) {
+		UserModel u = new UserModel();
+		user = u.findAcc(email, password);
+		
+		if (user != null)
+			return true;
+		return false;
 	}
 
 }

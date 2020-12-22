@@ -104,7 +104,7 @@ public class ChefMenuUI extends View {
 	private void ordersBtn() {
 		btnOrders.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefOrders().mConfig();
+				new ChefOrders().config();
 			}
 		});
 	}
@@ -112,7 +112,7 @@ public class ChefMenuUI extends View {
 	private void foodStatBtn() {
 		btnFoodStat.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefFoodStatus().mConfig();
+				new ChefFoodStatus().config();
 			}
 		});
 	}
@@ -120,7 +120,7 @@ public class ChefMenuUI extends View {
 	private void mngMenuBtn() {
 		btnMngMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ChefManageMenu().mConfig();
+				new ChefManageMenu().config();
 			}
 		});
 	}
@@ -128,7 +128,7 @@ public class ChefMenuUI extends View {
 	private void viewMenuBtn() {
 		btnViewMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ChefViewMenu().mConfig();
+				new ChefViewMenu().config();
 			}
 		});
 	}
