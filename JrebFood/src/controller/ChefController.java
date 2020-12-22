@@ -6,6 +6,7 @@ import core.Controller;
 import core.Model;
 import core.View;
 import model.ChefModel;
+import model.FoodModel;
 import model.UserModel;
 import view.chef_view.ChefFoodStatus;
 import view.chef_view.ChefManageMenu;
@@ -47,6 +48,15 @@ public class ChefController extends Controller {
 	public Vector<Model> getAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public Vector<Model> getAllFromChef() {
+		Vector<Model> data;
+		FoodModel u = new FoodModel();
+		
+		data = FoodController.getInstance().getAllFromChef(acc.getId());
+		
+		return data;
 	}
 	
 	public boolean findAcc(String email, String password) {

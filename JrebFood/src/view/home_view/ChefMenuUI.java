@@ -106,6 +106,7 @@ public class ChefMenuUI extends View {
 	private void viewMenuBtn() {
 		btnViewMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				System.out.println("going into view menu");
 				ChefController.getInstance().viewMenu();
 			}
 		});

@@ -9,11 +9,11 @@ import core.Model;
 
 public class FoodModel extends Model {
 	
-	private Integer food_id, food_price, food_stock;
-	private String food_name, food_description;
+	private Integer id, chefId, price;
+	private String name, desc, available;
 	
 	public FoodModel() {
-		this.tableName = "foods";
+		this.tableName = "Food";
 	}
 
 	@Override
@@ -22,25 +22,29 @@ public class FoodModel extends Model {
 		PreparedStatement ps = con.prepareStatement(query);
 		
 		try {
-			ps.setString(1, food_name);
-			ps.setString(2, food_description);
-			ps.setInt(3, food_price);
-			ps.setInt(4, food_stock);
+			ps.setInt(1, id);
+			ps.setInt(2, chefId);
+			ps.setString(3,  name);
+			ps.setString(4, desc);
+			ps.setInt(5, price);
+			ps.setString(6, available);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public void update() {
 		String query = String.format("UPDATE %s SET food_name=?, food_description=?, food_price=?, food_stock=? WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setString(1, food_name);
-			ps.setString(2, food_description);
-			ps.setInt(3, food_price);
-			ps.setInt(4, food_stock);
+			ps.setInt(1, id);
+			ps.setInt(2, chefId);
+			ps.setString(3,  name);
+			ps.setString(4, desc);
+			ps.setInt(5, price);
+			ps.setString(6, available);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -49,13 +53,15 @@ public class FoodModel extends Model {
 
 	@Override
 	public void delete() {
-		String query = String.format("DELETE FROM %s WHERE id=?", tableName);
+		String query = String.format("DELETE FROM %s WHERE ChefID = %s", tableName, id);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setString(1, food_name);
-			ps.setString(2, food_description);
-			ps.setInt(3, food_price);
-			ps.setInt(4, food_stock);
+			ps.setInt(1, id);
+			ps.setInt(2, chefId);
+			ps.setString(3,  name);
+			ps.setString(4, desc);
+			ps.setInt(5, price);
+			ps.setString(6, available);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,23 +72,25 @@ public class FoodModel extends Model {
 	public Vector<Model> getAll() {
 		Vector<Model> data = new Vector<>();
 		
-		String query = String.format("SELECT * FROM %s", tableName);
+		String query = String.format("SELECT * FROM %s WHERE ChefID = ", tableName);
 		ResultSet rs = con.executeQuery(query);
 		
 		try {
 			while(rs.next()) {
-				Integer food_id = rs.getInt("food_id");
-				String food_name = rs.getString("food_name");
-				String food_description = rs.getString("food_decription");
-				Integer food_price = rs.getInt("food_price");
-				Integer food_stock = rs.getInt("food_stock");
+				Integer id = rs.getInt("FoodID");
+				Integer chefId = rs.getInt("ChefID");
+				String name = rs.getString("Name");
+				String desc = rs.getString("Description");
+				Integer price = rs.getInt("Price");
+				String available = rs.getString("Available");
 				
 				FoodModel f = new FoodModel();
-				f.setFood_id(food_id);
-				f.setFood_name(food_name);
-				f.setFood_description(food_description);
-				f.setFood_price(food_price);
-				f.setFood_stock(food_stock);
+				f.setId(id);
+				f.setChefId(chefId);
+				f.setName(name);
+				f.setDesc(desc);
+				f.setPrice(price);
+				f.setAvailable(available);
 				
 				data.add(f);
 			}
@@ -93,45 +101,86 @@ public class FoodModel extends Model {
 		
 		return null;
 	}
-
-	public Integer getFood_id() {
-		return food_id;
+	
+	public Vector<Model> getAllFromChef(int chefID){
+		Vector<Model> data = new Vector<>();
+		
+		String query = String.format("SELECT * FROM %s WHERE ChefID = %s", tableName, chefID);
+		ResultSet rs = con.executeQuery(query);
+		
+		try {
+			while(rs.next()) {
+				Integer id = rs.getInt("FoodID");
+				Integer chefId = rs.getInt("ChefID");
+				String name = rs.getString("Name");
+				String desc = rs.getString("Description");
+				Integer price = rs.getInt("Price");
+				String available = rs.getString("Available");
+				
+				FoodModel f = new FoodModel();
+				f.setId(id);
+				f.setChefId(chefId);
+				f.setName(name);
+				f.setDesc(desc);
+				f.setPrice(price);
+				f.setAvailable(available);
+				System.out.println("success " + name);
+				data.add(f);
+			}
+			return data;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
-	public void setFood_id(Integer food_id) {
-		this.food_id = food_id;
+	public Integer getId() {
+		return id;
 	}
 
-	public Integer getFood_price() {
-		return food_price;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setFood_price(Integer food_price) {
-		this.food_price = food_price;
+	public Integer getChefId() {
+		return chefId;
 	}
 
-	public String getFood_name() {
-		return food_name;
+	public void setChefId(Integer chefId) {
+		this.chefId = chefId;
 	}
 
-	public void setFood_name(String food_name) {
-		this.food_name = food_name;
+	public Integer getPrice() {
+		return price;
 	}
 
-	public String getFood_description() {
-		return food_description;
-	}
-
-	public void setFood_description(String food_description) {
-		this.food_description = food_description;
-	}
-
-	public Integer getFood_stock() {
-		return food_stock;
-	}
-
-	public void setFood_stock(Integer food_stock) {
-		this.food_stock = food_stock;
+	public void setPrice(Integer price) {
+		this.price = price;
 	}
 	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
+	public String getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(String available) {
+		this.available = available;
+	}
+
 }
