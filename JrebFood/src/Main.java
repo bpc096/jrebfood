@@ -1,19 +1,14 @@
 import java.awt.EventQueue;
 
-import views.core.LoginUI;
+import connect.Connect;
+import controller.HomeController;
+import view.home_view.LoginUI;
 
 public class Main {
 	
 	public Main() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					LoginUI login = new LoginUI();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		Connect.getConnection();
+		HomeController.getInstance().viewLoginUI();
 	}
 
 	public static void main(String[] args) {

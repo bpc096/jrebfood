@@ -1,0 +1,55 @@
+/Main$1.class
+/Main.class
+/acceptBtn.png
+/activeBtn.png
+/addBtn.png
+/avOrderBtn.png
+/backBtn.png
+/cancelBtn.png
+/cartBtn.png
+/checkOutBtn.png
+/connect/
+/controller/
+/core/
+<<<<<<< HEAD
+/model/
+=======
+/crossBtn.png
+/deliverBtn.png
+/deliverOrderBtn.png
+/finSumBtn.png
+/fireBtn.png
+/foodStatBtn.png
+/hireBtn.png
+/historyBtn.png
+/jrebfood_logo.png
+/jrebfood_txt.png
+/loginBtn.png
+/menuBtn.png
+/mngEmpBtn.png
+/mngMenuBtn.png
+/model/
+/okBtn.png
+/ordersBtn.png
+/payBtn.png
+/registBtn.png
+/removeBtn.png
+/restoBtn.png
+/restoOrderBtn.png
+/splash.png
+/tickBtn.png
+>>>>>>> ec975f01b5cc9e9f8f826b5f441ae73128edd6ec
+/views/
+/views_chef_menu/
+/views_customer_menu/
+/views_driver_menu/
+/views_manager_menu/
+<<<<<<< HEAD
+=======
+/views_core/
+/views_home/
+/view/
+>>>>>>> ec975f01b5cc9e9f8f826b5f441ae73128edd6ec
+/logoutBtn.png
+/orderStatBtn.png
+/.DS_Store
