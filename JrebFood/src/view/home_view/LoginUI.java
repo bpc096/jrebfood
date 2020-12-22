@@ -4,6 +4,8 @@ import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
@@ -116,30 +118,37 @@ public class LoginUI extends View {
 					setVisible(false);
 				}
 				
-				// if input is valid
-				if (!HomeController.getInstance().validEmailPassword(txtFieldEmail.getText(), fieldPassword.getText()))
+				// check if input is valid
+				if (!HomeController.getInstance().validEmailPassword(txtFieldEmail.getText(), fieldPassword.getText())) {
+					JOptionPane.showMessageDialog(null, "Email and Password is Invalid.", "warning", JOptionPane.ERROR_MESSAGE);
 					return;
+				}
 				
 				accFound = UserController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
 				if (accFound) {
 					new CustomerMenuUI().config();
 					setVisible(false);
+					return;
 				}
 				accFound = DriverController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
 				if (accFound) {
 					new DriverMenuUI().config();
 					setVisible(false);
+					return;
 				}
 				accFound = ChefController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
 				if (accFound) {
 					new ChefMenuUI().config();
 					setVisible(false);
+					return;
 				}
 				accFound = ManagerController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
 				if (accFound) {
 					new ManagerMenuUI().config();
 					setVisible(false);
+					return;
 				}
+				JOptionPane.showMessageDialog(null, "Email and Password is Invalid.", "warning", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 	}
