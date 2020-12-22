@@ -9,8 +9,8 @@ import core.Model;
 
 public class ChefModel extends Model {
 
-	private Integer id, chef_id;
-	private String chef_email, food_name, food_description;
+	private Integer id;
+	private String name, email, password;
 	
 	public ChefModel() {
 		this.tableName = "chef";
@@ -22,10 +22,10 @@ public class ChefModel extends Model {
 		PreparedStatement ps = con.prepareStatement(query);
 		
 		try {
-			ps.setInt(1, chef_id);
-			ps.setString(2, chef_email);
-			ps.setString(3, food_name);
-			ps.setString(4, food_description);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -37,10 +37,10 @@ public class ChefModel extends Model {
 		String query = String.format("UPDATE %s SET chef_id=?, chef_email=?, food_name=?, food_description=? WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, chef_id);
-			ps.setString(2, chef_email);
-			ps.setString(3, food_name);
-			ps.setString(4, food_description);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -52,10 +52,10 @@ public class ChefModel extends Model {
 		String query = String.format("DELETE FROM %s WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, chef_id);
-			ps.setString(2, chef_email);
-			ps.setString(3, food_name);
-			ps.setString(4, food_description);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,18 +71,16 @@ public class ChefModel extends Model {
 		
 		try {
 			while(rs.next()) {
-				Integer id = rs.getInt("id");
-				Integer chef_id = rs.getInt("chef_id");
-				String chef_email = rs.getString("chef_email");
-				String food_name = rs.getString("food_name");
-				String food_description = rs.getString("food_description");
+				Integer id = rs.getInt("ChefID");
+				String name = rs.getString("Name");
+				String email = rs.getString("Email");
+				String password = rs.getString("Password");
 				
 				ChefModel c = new ChefModel();
 				c.setId(id);
-				c.setChef_id(chef_id);
-				c.setChef_email(chef_email);
-				c.setFood_name(food_name);
-				c.setFood_description(food_description);
+				c.setName(name);
+				c.setEmail(email);
+				c.setPassword(password);
 				
 				data.add(c);
 			}
@@ -91,6 +89,31 @@ public class ChefModel extends Model {
 			e.printStackTrace();
 		}
 		
+		return null;
+	}
+	
+	public ChefModel findAcc(String findEmail, String findPassword) {
+		ChefModel c;
+		String query = String.format("SELECT * FROM %s WHERE Email = '%s' AND Password = '%s'", tableName, findEmail, findPassword);
+		ResultSet rs = con.executeQuery(query);
+		try {
+			while (rs.next()) {
+				Integer id = rs.getInt("ChefID");
+				String name = rs.getString("Name");
+				String email = rs.getString("Email");
+				String password = rs.getString("Password");
+					
+				c = new ChefModel();
+				c.setId(id);
+				c.setName(name);
+				c.setEmail(email);
+				c.setPassword(password);
+				return c;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -102,36 +125,28 @@ public class ChefModel extends Model {
 		this.id = id;
 	}
 
-	public Integer getChef_id() {
-		return chef_id;
+	public String getName() {
+		return name;
 	}
 
-	public void setChef_id(Integer chef_id) {
-		this.chef_id = chef_id;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
-	public String getChef_email() {
-		return chef_email;
-	}
-
-	public void setChef_email(String chef_email) {
-		this.chef_email = chef_email;
-	}
-
-	public String getFood_name() {
-		return food_name;
-	}
-
-	public void setFood_name(String food_name) {
-		this.food_name = food_name;
-	}
-
-	public String getFood_description() {
-		return food_description;
-	}
-
-	public void setFood_description(String food_description) {
-		this.food_description = food_description;
-	}
-
 }

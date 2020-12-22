@@ -8,7 +8,7 @@ import model.UserModel;
 
 public class UserController extends Controller {
 
-	private static UserModel user;
+	private static UserModel acc;
 
 	public static UserController controller;
 	
@@ -24,14 +24,14 @@ public class UserController extends Controller {
 	@Override
 	public Vector<Model> getAll() {
 		// TODO Auto-generated method stub
-		return user.getAll();
+		return acc.getAll();
 	}
 
 	public void insert(String name, String email, String phone_number, String password) {
 		UserModel u = new UserModel();
 		u.setName(name);
 		u.setEmail(email);
-		u.setPhone_number(phone_number);
+		u.setPhoneNum(phone_number);
 		u.setPassword(password);
 		
 		u.insert();
@@ -41,7 +41,7 @@ public class UserController extends Controller {
 		UserModel u = new UserModel();
 		u.setName(name);
 		u.setEmail(email);
-		u.setPhone_number(phone_number);
+		u.setPhoneNum(phone_number);
 		u.setPassword(password);
 		u.setId(id);
 		
@@ -57,9 +57,9 @@ public class UserController extends Controller {
 	
 	public boolean findAcc(String email, String password) {
 		UserModel u = new UserModel();
-		user = u.findAcc(email, password);
+		acc = u.findAcc(email, password);
 		
-		if (user != null)
+		if (acc != null)
 			return true;
 		return false;
 	}

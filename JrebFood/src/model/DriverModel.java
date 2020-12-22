@@ -9,11 +9,11 @@ import core.Model;
 
 public class DriverModel extends Model {
 
-	private Integer id, driver_id;
-	private String driver_email;
-	
+	private Integer id, profit;
+	private String name, email, password;
+
 	public DriverModel() {
-		this.tableName = "driver";
+		this.tableName = "Driver";
 	}
 
 	@Override
@@ -22,8 +22,7 @@ public class DriverModel extends Model {
 		PreparedStatement ps = con.prepareStatement(query);
 		
 		try {
-			ps.setInt(1, driver_id);
-			ps.setString(2, driver_email);
+			ps.setString(1, email);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,8 +34,7 @@ public class DriverModel extends Model {
 		String query = String.format("UPDATE %s SET driver_id=?, driver_email=? WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, driver_id);
-			ps.setString(2, driver_email);
+			ps.setString(1, email);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,8 +46,7 @@ public class DriverModel extends Model {
 		String query = String.format("DELETE FROM %s WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, driver_id);
-			ps.setString(2, driver_email);
+			ps.setString(2, email);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,8 +68,7 @@ public class DriverModel extends Model {
 				
 				DriverModel d = new DriverModel();
 				d.setId(id);
-				d.setDriver_id(driver_id);
-				d.setDriver_email(driver_email);
+				d.setEmail(driver_email);
 				
 				data.add(d);
 			}
@@ -83,6 +79,33 @@ public class DriverModel extends Model {
 		
 		return null;
 	}
+	
+	public DriverModel findAcc(String findEmail, String findPassword) {
+		DriverModel u;
+		String query = String.format("SELECT * FROM %s WHERE Email = '%s' AND Password = '%s'", tableName, findEmail, findPassword);
+		ResultSet rs = con.executeQuery(query);
+		try {
+			while (rs.next()) {
+				Integer id = rs.getInt("DriverID");
+				String name = rs.getString("Name");
+				String email = rs.getString("Email");
+				String password = rs.getString("Password");
+				Integer profit = rs.getInt("Profit");
+					
+				u = new DriverModel();
+				u.setId(id);
+				u.setName(name);
+				u.setEmail(email);
+				u.setPassword(password);
+				u.setProfit(profit);
+				return u;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public Integer getId() {
 		return id;
@@ -91,20 +114,37 @@ public class DriverModel extends Model {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public Integer getDriver_id() {
-		return driver_id;
+	
+	public String getName() {
+		return name;
 	}
 
-	public void setDriver_id(Integer driver_id) {
-		this.driver_id = driver_id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getDriver_email() {
-		return driver_email;
+	public Integer getProfit() {
+		return profit;
 	}
 
-	public void setDriver_email(String driver_email) {
-		this.driver_email = driver_email;
+	public void setProfit(Integer profit) {
+		this.profit = profit;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }

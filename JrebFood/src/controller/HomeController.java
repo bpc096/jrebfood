@@ -22,6 +22,8 @@ public class HomeController extends Controller {
 	public boolean validEmailPassword(String email, String password) {
 		if (email.length() >= 30 || password.length() >= 30)
 			return false;
+		if (!(email.contains(".com") && email.contains("@")))
+			return false;
 		return true;
 	}
 

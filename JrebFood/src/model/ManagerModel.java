@@ -9,8 +9,8 @@ import core.Model;
 
 public class ManagerModel extends Model {
 
-	private Integer id, manager_id;
-	private String emp_email;
+	private Integer id;
+	private String name, email, password;
 	
 	public ManagerModel() {
 		this.tableName = "manager";
@@ -22,8 +22,10 @@ public class ManagerModel extends Model {
 		PreparedStatement ps = con.prepareStatement(query);
 		
 		try {
-			ps.setInt(1, manager_id);
-			ps.setString(2, emp_email);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -35,8 +37,10 @@ public class ManagerModel extends Model {
 		String query = String.format("UPDATE %s SET name=?, email=?, phone_number=?, password=? WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, manager_id);
-			ps.setString(2, emp_email);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,8 +52,10 @@ public class ManagerModel extends Model {
 		String query = String.format("DELETE FROM %s WHERE id=?", tableName);
 		PreparedStatement ps = con.prepareStatement(query);
 		try {
-			ps.setInt(1, manager_id);
-			ps.setString(2, emp_email);
+			ps.setInt(1, id);
+			ps.setString(2, name);
+			ps.setString(3, email);
+			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,13 +72,13 @@ public class ManagerModel extends Model {
 		try {
 			while(rs.next()) {
 				Integer id = rs.getInt("id");
-				Integer manager_id = rs.getInt("manager_id");
-				String emp_email = rs.getString("emp_email");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
 				
 				ManagerModel d = new ManagerModel();
 				d.setId(id);
-				d.setManager_id(manager_id);
-				d.setEmp_email(emp_email);
+				d.setName(name);
+				d.setEmail(email);
 				
 				data.add(d);
 			}
@@ -83,6 +89,31 @@ public class ManagerModel extends Model {
 		
 		return data;
 	}
+	
+	public ManagerModel findAcc(String findEmail, String findPassword) {
+		ManagerModel m;
+		String query = String.format("SELECT * FROM %s WHERE Email = '%s' AND Password = '%s'", tableName, findEmail, findPassword);
+		ResultSet rs = con.executeQuery(query);
+		try {
+			while (rs.next()) {
+				Integer id = rs.getInt("ManagerID");
+				String name = rs.getString("Name");
+				String email = rs.getString("Email");
+				String password = rs.getString("Password");
+					
+				m = new ManagerModel();
+				m.setId(id);
+				m.setName(name);
+				m.setEmail(email);
+				m.setPassword(password);
+				return m;
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public Integer getId() {
 		return id;
@@ -92,20 +123,28 @@ public class ManagerModel extends Model {
 		this.id = id;
 	}
 
-	public Integer getManager_id() {
-		return manager_id;
+	public String getName() {
+		return name;
 	}
 
-	public void setManager_id(Integer manager_id) {
-		this.manager_id = manager_id;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getEmp_email() {
-		return emp_email;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEmp_email(String emp_email) {
-		this.emp_email = emp_email;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }

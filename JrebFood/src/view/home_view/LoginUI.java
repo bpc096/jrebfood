@@ -7,6 +7,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import controller.ChefController;
+import controller.DriverController;
+import controller.HomeController;
+import controller.ManagerController;
 import controller.UserController;
 import core.View;
 
@@ -112,9 +116,28 @@ public class LoginUI extends View {
 					setVisible(false);
 				}
 				
+				// if input is valid
+				if (!HomeController.getInstance().validEmailPassword(txtFieldEmail.getText(), fieldPassword.getText()))
+					return;
+				
 				accFound = UserController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
 				if (accFound) {
 					new CustomerMenuUI().config();
+					setVisible(false);
+				}
+				accFound = DriverController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
+				if (accFound) {
+					new DriverMenuUI().config();
+					setVisible(false);
+				}
+				accFound = ChefController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
+				if (accFound) {
+					new ChefMenuUI().config();
+					setVisible(false);
+				}
+				accFound = ManagerController.getInstance().findAcc(txtFieldEmail.getText(), fieldPassword.getText());
+				if (accFound) {
+					new ManagerMenuUI().config();
 					setVisible(false);
 				}
 			}

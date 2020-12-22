@@ -10,7 +10,7 @@ import core.Model;
 public class UserModel extends Model {
 	
 	private Integer id;
-	private String name, email, phone_number, password;
+	private String name, email, phoneNum, password;
 	
 	public UserModel() {
 		this.tableName = "User";
@@ -24,7 +24,7 @@ public class UserModel extends Model {
 		try {
 			ps.setString(1, name);
 			ps.setString(2, email);
-			ps.setString(3, phone_number);
+			ps.setString(3, phoneNum);
 			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -39,7 +39,7 @@ public class UserModel extends Model {
 		try {
 			ps.setString(1, name);
 			ps.setString(2, email);
-			ps.setString(3, phone_number);
+			ps.setString(3, phoneNum);
 			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -54,7 +54,7 @@ public class UserModel extends Model {
 		try {
 			ps.setString(1, name);
 			ps.setString(2, email);
-			ps.setString(3, phone_number);
+			ps.setString(3, phoneNum);
 			ps.setString(4, password);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -81,7 +81,7 @@ public class UserModel extends Model {
 				u.setId(id);
 				u.setName(name);
 				u.setEmail(email);
-				u.setPhone_number(phone_number);
+				u.setPhoneNum(phone_number);
 				u.setPassword(password);
 				
 				data.add(u);
@@ -104,13 +104,13 @@ public class UserModel extends Model {
 				String name = rs.getString("Name");
 				String email = rs.getString("Email");
 				String password = rs.getString("Password");
-				String phone_number = rs.getString("PhoneNum");
+				String phoneNum = rs.getString("PhoneNum");
 					
 				u = new UserModel();
 				u.setId(id);
 				u.setName(name);
 				u.setEmail(email);
-				u.setPhone_number(phone_number);
+				u.setPhoneNum(phoneNum);
 				u.setPassword(password);
 				return u;
 			}
@@ -145,12 +145,12 @@ public class UserModel extends Model {
 		this.email = email;
 	}
 
-	public String getPhone_number() {
-		return phone_number;
+	public String getPhoneNum() {
+		return phoneNum;
 	}
 
-	public void setPhone_number(String phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNum(String phone_number) {
+		this.phoneNum = phone_number;
 	}
 
 	public String getPassword() {
