@@ -8,7 +8,7 @@ public class Main {
 	
 	public Main() {
 		Connect.getConnection();
-		HomeController.getInstance().viewLoginUI().config();
+		HomeController.getInstance().viewLoginUI();
 	}
 
 	public static void main(String[] args) {

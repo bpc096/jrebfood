@@ -35,7 +35,7 @@ public class UserController extends Controller {
 			return false;	
 		if (name.length() <= 3 || email.length() <= 3 || phoneNum.length() <= 3 || password.length() <= 3)
 			return false;	
-		if (!(email.contains(".com") && email.contains("@")))
+		if (!(email.endsWith(".com") && email.contains("@")))
 			return false;
 		for (char i : phoneNum.toCharArray()) {
 			if (!Character.isDigit(i))

@@ -16,12 +16,12 @@ public class HomeController extends Controller {
 		return controller = (controller == null) ? new HomeController() : controller;
 	}
 	
-	public View viewLoginUI() {
-		return new LoginUI();
+	public void viewLoginUI() {
+		new LoginUI().config();
 	}
 	
-	public View viewRegisterUI() {
-		return new RegisterUI();
+	public void viewRegisterUI() {
+		new RegisterUI().config();
 	}
 	
 	public boolean validEmailPassword(String email, String password) {
@@ -29,7 +29,7 @@ public class HomeController extends Controller {
 			return false;
 		if (email.length() <= 3 || password.length() <= 3)
 			return false;
-		if (!(email.contains(".com") && email.contains("@")))
+		if (!(email.endsWith(".com") && email.contains("@")))
 			return false;
 		return true;
 	}

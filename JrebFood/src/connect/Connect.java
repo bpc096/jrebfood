@@ -22,7 +22,7 @@ public final class Connect {
 			Class.forName("com.mysql.jdbc.Driver");
 			con = DriverManager.getConnection(CONNECTION, USERNAME, PASSWORD);
 			st = con.createStatement();
-			System.out.println("Connection Successfully!");
+			System.out.println("Connection Successful.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Failed to connect the database, the system is terminated!");

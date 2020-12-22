@@ -184,7 +184,7 @@ public class RegisterUI extends View implements ActionListener {
 				status = UserController.getInstance().insert(textFieldName.getText(), textFieldEmail.getText(), textFieldPhone.getText(), textFieldPhone.getText());
 				if (status == true) {
 					JOptionPane.showMessageDialog(null, "Register Successful!", "", JOptionPane.DEFAULT_OPTION);
-					HomeController.getInstance().viewLoginUI().config();
+					HomeController.getInstance().viewLoginUI();
 					setVisible(false);
 				}
 				else
@@ -196,7 +196,7 @@ public class RegisterUI extends View implements ActionListener {
 	private void btnLogin() {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				HomeController.getInstance().viewLoginUI().config();
+				HomeController.getInstance().viewLoginUI();
 				setVisible(false);
 			}
 		});

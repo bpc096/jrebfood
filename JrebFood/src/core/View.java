@@ -25,5 +25,16 @@ public abstract class View extends JFrame{
 		setTitle("JrebFood");
 	}
 	
+	public void mconfig() {
+		setLocation(x, y);
+		setResizable(false);
+		setSize(width, height);
+		getContentPane().setBackground(Color.WHITE);
+		getContentPane().setLayout(null);
+		setVisible(true);
+		setIconImage(new ImageIcon("res/jrebfood_logo.png").getImage());
+		setTitle("JrebFood");
+	}
+	
 	public abstract void initialize();
 }

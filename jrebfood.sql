@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 22, 2020 at 04:20 AM
+-- Generation Time: Dec 22, 2020 at 06:40 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -71,6 +71,7 @@ INSERT INTO `Driver` (`DriverID`, `Name`, `Email`, `Password`, `Profit`) VALUES
 CREATE TABLE `Food` (
   `FoodID` int(11) NOT NULL,
   `ChefID` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
   `Description` varchar(100) NOT NULL,
   `Price` int(11) NOT NULL DEFAULT 0,
   `Available` char(1) NOT NULL
@@ -236,7 +237,7 @@ ALTER TABLE `TransactionHeader`
 -- AUTO_INCREMENT for table `User`
 --
 ALTER TABLE `User`
-  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `UserID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

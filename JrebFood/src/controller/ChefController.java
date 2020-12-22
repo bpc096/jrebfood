@@ -4,8 +4,13 @@ import java.util.Vector;
 
 import core.Controller;
 import core.Model;
+import core.View;
 import model.ChefModel;
 import model.UserModel;
+import view.chef_view.ChefFoodStatus;
+import view.chef_view.ChefManageMenu;
+import view.chef_view.ChefOrders;
+import view.chef_view.ChefViewMenu;
 
 public class ChefController extends Controller {
 	
@@ -20,6 +25,22 @@ public class ChefController extends Controller {
 
 	public static ChefController getInstance() {
 		return controller = (controller == null) ? new ChefController() : controller;
+	}
+	
+	public void viewMenu() {
+		new ChefViewMenu().mconfig();
+	}
+	
+	public void viewManageMenu() {
+		new ChefManageMenu().mconfig();
+	}
+	
+	public void viewFoodStatus() {
+		new ChefFoodStatus().mconfig();
+	}
+	
+	public void viewChefOrder() {
+		new ChefOrders().mconfig();
 	}
 
 	@Override

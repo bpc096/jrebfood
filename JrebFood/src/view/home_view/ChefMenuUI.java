@@ -7,6 +7,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import controller.ChefController;
+import controller.HomeController;
 import core.View;
 import view.chef_view.*;
 
@@ -95,32 +97,8 @@ public class ChefMenuUI extends View {
 	private void logOutBtn() {
 		btnLogout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginUI().config();
+				HomeController.getInstance().viewLoginUI();
 				setVisible(false);
-			}
-		});
-	}
-	
-	private void ordersBtn() {
-		btnOrders.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ChefOrders().config();
-			}
-		});
-	}
-	
-	private void foodStatBtn() {
-		btnFoodStat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ChefFoodStatus().config();
-			}
-		});
-	}
-	
-	private void mngMenuBtn() {
-		btnMngMenu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				new ChefManageMenu().config();
 			}
 		});
 	}
@@ -128,8 +106,33 @@ public class ChefMenuUI extends View {
 	private void viewMenuBtn() {
 		btnViewMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new ChefViewMenu().config();
+				ChefController.getInstance().viewMenu();
 			}
 		});
 	}
+	
+	private void mngMenuBtn() {
+		btnMngMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChefController.getInstance().viewManageMenu();
+			}
+		});
+	}
+	
+	private void foodStatBtn() {
+		btnFoodStat.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChefController.getInstance().viewFoodStatus();
+			}
+		});
+	}
+	
+	private void ordersBtn() {
+		btnOrders.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChefController.getInstance().viewChefOrder();
+			}
+		});
+	}
+	
 }
