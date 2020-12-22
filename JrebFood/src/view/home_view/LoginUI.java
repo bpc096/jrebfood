@@ -147,7 +147,7 @@ public class LoginUI extends View {
 	private void registerBtn() {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new RegisterUI().config();
+				HomeController.getInstance().viewRegisterUI().config();
 				setVisible(false);
 			}
 		});

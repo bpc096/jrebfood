@@ -6,9 +6,14 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import controller.HomeController;
+import controller.UserController;
 import core.View;
 
 import java.awt.event.ActionListener;
@@ -93,7 +98,7 @@ public class RegisterUI extends View implements ActionListener {
 		textFieldPhone.setColumns(10);
 
 		// password textfield
-		textFieldPassword = new JTextField();
+		textFieldPassword = new JPasswordField();
 		textFieldPassword.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		textFieldPassword.setBounds(374, 333, 235, 34);
 		getContentPane().add(textFieldPassword);
@@ -125,38 +130,38 @@ public class RegisterUI extends View implements ActionListener {
 		btnLogin.setBounds(354, 503, 278, 25);
 		getContentPane().add(btnLogin);
 
-		// role label
-		lblRole = new JLabel("Role");
-		lblRole.setFont(new Font("MADE Tommy Soft", Font.BOLD, 18));
-		lblRole.setBounds(374, 392, 56, 16);
-		getContentPane().add(lblRole);
-
-		// driver radio btn
-		rdbtnDriver = new JRadioButton("Driver");
-		rdbtnDriver.setBorderPainted(false);
-		rdbtnDriver.setContentAreaFilled(false);
-		rdbtnDriver.setFocusPainted(false);
-		rdbtnDriver.setOpaque(false);
-		rdbtnDriver.setBounds(468, 417, 71, 25);
-		getContentPane().add(rdbtnDriver);
-
-		// chef radio btn
-		rdbtnChef = new JRadioButton("Chef");
-		rdbtnChef.setBorderPainted(false);
-		rdbtnChef.setContentAreaFilled(false);
-		rdbtnChef.setFocusPainted(false);
-		rdbtnChef.setOpaque(false);
-		rdbtnChef.setBounds(543, 417, 71, 25);
-		getContentPane().add(rdbtnChef);
-
-		// manager radio btn
-		rdbtnCustomer = new JRadioButton("Customer");
-		rdbtnCustomer.setBorderPainted(false);
-		rdbtnCustomer.setContentAreaFilled(false);
-		rdbtnCustomer.setFocusPainted(false);
-		rdbtnCustomer.setOpaque(false);
-		rdbtnCustomer.setBounds(374, 417, 86, 25);
-		getContentPane().add(rdbtnCustomer);
+//		// role label
+//		lblRole = new JLabel("Role");
+//		lblRole.setFont(new Font("MADE Tommy Soft", Font.BOLD, 18));
+//		lblRole.setBounds(374, 392, 56, 16);
+//		getContentPane().add(lblRole);
+//
+//		// driver radio btn
+//		rdbtnDriver = new JRadioButton("Driver");
+//		rdbtnDriver.setBorderPainted(false);
+//		rdbtnDriver.setContentAreaFilled(false);
+//		rdbtnDriver.setFocusPainted(false);
+//		rdbtnDriver.setOpaque(false);
+//		rdbtnDriver.setBounds(468, 417, 71, 25);
+//		getContentPane().add(rdbtnDriver);
+//
+//		// chef radio btn
+//		rdbtnChef = new JRadioButton("Chef");
+//		rdbtnChef.setBorderPainted(false);
+//		rdbtnChef.setContentAreaFilled(false);
+//		rdbtnChef.setFocusPainted(false);
+//		rdbtnChef.setOpaque(false);
+//		rdbtnChef.setBounds(543, 417, 71, 25);
+//		getContentPane().add(rdbtnChef);
+//
+//		// manager radio btn
+//		rdbtnCustomer = new JRadioButton("Customer");
+//		rdbtnCustomer.setBorderPainted(false);
+//		rdbtnCustomer.setContentAreaFilled(false);
+//		rdbtnCustomer.setFocusPainted(false);
+//		rdbtnCustomer.setOpaque(false);
+//		rdbtnCustomer.setBounds(374, 417, 86, 25);
+//		getContentPane().add(rdbtnCustomer);
 
 		// splash screen
 		lblSplash = new JLabel();
@@ -172,31 +177,18 @@ public class RegisterUI extends View implements ActionListener {
 		rdbuttonGroup.add(rdbtnCustomer);
 	}
 
-//	private void loadUser() {
-//		String header[] = {"ID", "NAME", "EMAIL", "PHONE NUMBER", "PASSWORD", "FOOD QUANTITY"};
-//		DefaultTableModel dtm = new DefaultTableModel(header, 0);
-//		
-//		con.rs = con.executeQuery("SELECT * FROM user");
-//		
-//		try {
-//			while(con.rs.next() == true) {
-//				tableContent = new Vector<Object>();
-//				for (int i = 1; i <= con.rsm.getColumnCount(); i++) {
-//					tableContent.add(con.rs.getObject(i));
-//				}
-//			 	dtm.addRow(tableContent); 
-//			}
-//			table.setModel(dtm);
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	private void btnRegist() {
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new LoginUI().config();
-				setVisible(false);
+				boolean status;
+				status = UserController.getInstance().insert(textFieldName.getText(), textFieldEmail.getText(), textFieldPhone.getText(), textFieldPhone.getText());
+				if (status == true) {
+					JOptionPane.showMessageDialog(null, "Register Successful!", "", JOptionPane.DEFAULT_OPTION);
+					HomeController.getInstance().viewLoginUI().config();
+					setVisible(false);
+				}
+				else
+					JOptionPane.showMessageDialog(null, "Invalid Input: Register Failed.", "Warning", JOptionPane.ERROR_MESSAGE);
 			}
 		});
 	}
@@ -204,7 +196,7 @@ public class RegisterUI extends View implements ActionListener {
 	private void btnLogin() {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new LoginUI().config();
+				HomeController.getInstance().viewLoginUI().config();
 				setVisible(false);
 			}
 		});
@@ -212,10 +204,6 @@ public class RegisterUI extends View implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnRegister) {
-//			con.insertUser(textFieldName.getText(), textFieldEmail.getText(), textFieldPhone.getText(), textFieldPassword.getText());
-			System.out.println("Clicked!");
-		}
 
 	}
 }

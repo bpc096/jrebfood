@@ -6,6 +6,7 @@ import core.Controller;
 import core.Model;
 import core.View;
 import view.home_view.LoginUI;
+import view.home_view.RegisterUI;
 
 public class HomeController extends Controller {
 	
@@ -19,8 +20,14 @@ public class HomeController extends Controller {
 		return new LoginUI();
 	}
 	
+	public View viewRegisterUI() {
+		return new RegisterUI();
+	}
+	
 	public boolean validEmailPassword(String email, String password) {
 		if (email.length() >= 30 || password.length() >= 30)
+			return false;
+		if (email.length() <= 3 || password.length() <= 3)
 			return false;
 		if (!(email.contains(".com") && email.contains("@")))
 			return false;

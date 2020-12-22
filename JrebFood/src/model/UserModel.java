@@ -24,8 +24,8 @@ public class UserModel extends Model {
 		try {
 			ps.setString(1, name);
 			ps.setString(2, email);
-			ps.setString(3, phoneNum);
-			ps.setString(4, password);
+			ps.setString(3, password);
+			ps.setString(4, phoneNum);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
